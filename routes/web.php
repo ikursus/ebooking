@@ -1,50 +1,35 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('hubungi', function () {
-
-  return view('pages/template_hubungi');
-
-})->name('c');
+Route::get('/', 'PagesController@homepage')->name('homepage');
+Route::get('hubungi', 'PagesController@hubungi')->name('c');
 
 # Route untuk paparkan senarai users
-Route::get('users', function () {
+Route::get('users', 'UsersController@index')->name('users.index');
+# Route untuk papar borang tambah lab
+Route::get('users/add', 'UsersController@create')->name('users.create');
+# Route untuk simpan rekod dari borang tambah lab
+Route::post('users/add', 'UsersController@store')->name('users.store');
+# Route untuk papar bornag edit lab
+Route::get('users/{id}/edit', 'UsersController@edit')->name('users.edit');
+# Route untuk kemaskini rekod lab
+Route::patch('users/{id}/edit', 'UsersController@update')->name('users.update');
+# Route untuk delete lab
+Route::delete('users/{id}', 'UsersController@destroy')->name('users.destroy');
 
-  $page_title = '<h1>Senarai Users</h1>';
 
-  $senarai_users = [
+# Route untuk paparkan senarai lab
+Route::get('lab', 'LabController@index')->name('lab.index');
+# Route untuk papar borang tambah user
+Route::get('lab/add', 'LabController@create')->name('lab.create');
+# Route untuk simpan rekod dari borang tambah user
+Route::post('lab/add', 'LabController@store')->name('lab.store');
+# Route untuk papar bornag edit user
+Route::get('lab/{id}/edit', 'LabController@edit')->name('lab.edit');
+# Route untuk kemaskini rekod user
+Route::patch('lab/{id}/edit', 'LabController@update')->name('lab.update');
+# Route untuk delete user
+Route::delete('lab/{id}', 'LabController@destroy')->name('lab.destroy');
 
-    ['id' => 1, 'nama' => 'Ali Bin Baba', 'email' => 'alibaba@gmail.com', 'phone' => '0123456789'],
-    ['id' => 2, 'nama' => 'Abdul Wahab', 'email' => 'abdul@gmail.com', 'phone' => '0123656789'],
-    ['id' => 3, 'nama' => 'Sidiq Sigaraga', 'email' => 'sidiq@gmail.com', 'phone' => '016576789'],
-    ['id' => 4, 'nama' => 'Chong Wei', 'email' => 'chongwei@gmail.com', 'phone' => '019866789'],
-    ['id' => 5, 'nama' => 'Siti', 'email' => 'siti@gmail.com', 'phone' => '0123456559']
-
-  ];
-
-  # return view('users/template_index', ['page_title' => $page_title]);
-  # return view('users/template_index')->with('page_title', $page_title);
-  return view('users/template_index', compact('page_title', 'senarai_users'));
-
-});
-
-Route::get('users/add', function () {
-  return view('users/template_add');
-});
 
 Auth::routes();
 
