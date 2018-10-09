@@ -37,7 +37,7 @@
       <td>{{ $item['nama'] }}</td>
       <td>{{ $item['status'] }}</td>
       <td>
-        <a href="{{ route('lab.update', $item['id']) }}" class="btn btn-sm btn-primary">EDIT</a>
+        <a href="{{ route('lab.edit', $item['id']) }}" class="btn btn-sm btn-primary">EDIT</a>
       </td>
     </tr>
 

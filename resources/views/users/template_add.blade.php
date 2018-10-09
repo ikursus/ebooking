@@ -14,6 +14,8 @@
 
 <form method="post" action="{{ route('users.store') }}">
 
+@csrf
+
 <div class="form-group">
   <label>NAMA</label>
   <input type="text" name="nama" class="form-control">

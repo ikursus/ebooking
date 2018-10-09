@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LabController extends Controller
+class TempahanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,14 +13,7 @@ class LabController extends Controller
      */
     public function index()
     {
-        $senarai_lab = [
-          ['id' => 1, 'nama' => 'Makmal Komputer 1', 'status' => 'available'],
-          ['id' => 2, 'nama' => 'Makmal Komputer 2', 'status' => 'not_available'],
-          ['id' => 3, 'nama' => 'Makmal Komputer 3', 'status' => 'available']
-
-        ];
-
-        return view('labs/template_index', compact('senarai_lab'));
+        //
     }
 
     /**
@@ -30,7 +23,7 @@ class LabController extends Controller
      */
     public function create()
     {
-        return view('labs/template_add');
+        //
     }
 
     /**
@@ -41,9 +34,7 @@ class LabController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('nama');
-
-        return $data;
+        //
     }
 
     /**
@@ -65,7 +56,7 @@ class LabController extends Controller
      */
     public function edit($id)
     {
-        return view('labs/template_edit');
+        //
     }
 
     /**
@@ -77,7 +68,7 @@ class LabController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'Rekod berjaya dikemaskini';
+        //
     }
 
     /**
@@ -88,6 +79,6 @@ class LabController extends Controller
      */
     public function destroy($id)
     {
-        return 'Rekod berjaya dihapuskan';
+        //
     }
 }

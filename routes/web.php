@@ -17,18 +17,23 @@ Route::patch('users/{id}/edit', 'UsersController@update')->name('users.update');
 Route::delete('users/{id}', 'UsersController@destroy')->name('users.destroy');
 
 
-# Route untuk paparkan senarai lab
-Route::get('lab', 'LabController@index')->name('lab.index');
-# Route untuk papar borang tambah user
-Route::get('lab/add', 'LabController@create')->name('lab.create');
-# Route untuk simpan rekod dari borang tambah user
-Route::post('lab/add', 'LabController@store')->name('lab.store');
-# Route untuk papar bornag edit user
-Route::get('lab/{id}/edit', 'LabController@edit')->name('lab.edit');
-# Route untuk kemaskini rekod user
-Route::patch('lab/{id}/edit', 'LabController@update')->name('lab.update');
-# Route untuk delete user
-Route::delete('lab/{id}', 'LabController@destroy')->name('lab.destroy');
+// # Route untuk paparkan senarai lab
+// Route::get('lab', 'LabController@index')->name('lab.index');
+// # Route untuk papar borang tambah user
+// Route::get('lab/add', 'LabController@create')->name('lab.create');
+// # Route untuk simpan rekod dari borang tambah user
+// Route::post('lab/add', 'LabController@store')->name('lab.store');
+// # Route untuk papar bornag edit user
+// Route::get('lab/{id}/edit', 'LabController@edit')->name('lab.edit');
+//
+// # Route untuk kemaskini rekod user
+// Route::patch('lab/{id}/edit', 'LabController@update')->name('lab.update');
+// # Route untuk delete user
+// Route::delete('lab/{id}', 'LabController@destroy')->name('lab.destroy');
+
+
+Route::resource('lab', 'LabController');
+
 
 
 Auth::routes();

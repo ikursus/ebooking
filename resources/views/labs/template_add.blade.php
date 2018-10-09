@@ -13,6 +13,9 @@
                   @include('layouts.alerts')
 
 <form method="post" action="{{ route('lab.store') }}">
+@csrf
+{{ csrf_field() }}
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 <div class="form-group">
   <label>NAMA</label>
