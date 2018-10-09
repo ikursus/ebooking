@@ -10,6 +10,8 @@
 
                 <div class="card-body">
 
+                  @include('layouts.alerts')
+
 <!-- Paparkan data users dalam table -->
 <table class="table table-bordered table-striped">
 
