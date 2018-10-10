@@ -101,6 +101,9 @@ class UsersController extends Controller
 
   public function destroy($id)
   {
-    return 'Rekod telah berjaya dihapuskan';
+    
+    DB::table('users')->where('id', '=', $id)->delete();
+    return redirect()->route('users.index');
+
   }
 }

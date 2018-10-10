@@ -38,6 +38,39 @@
       <td>{{ $user->phone }}</td>
       <td>
         <a href="{{ route('users.update', $user->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$user->id }}">
+          DELETE
+        </button>
+
+        <form method="post" action="{{ route('users.destroy', $user->id) }}">
+          @csrf
+          @method('delete')
+        <!-- Modal -->
+        <div class="modal fade" id="modal-delete-{{$user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pengesahan Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Adakah anda bersetuju untuk menghapuskan data berikut?
+                <br>
+                Nama: {{$user->nama }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-danger">Teruskan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
       </td>
     </tr>
 
