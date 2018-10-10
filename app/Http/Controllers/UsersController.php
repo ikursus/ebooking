@@ -94,14 +94,14 @@ class UsersController extends Controller
     }
 
     # Simpan data ke dalam table users
-    DB::table('users')->where('id', '=', $id)->update($data);
+    DB::table('users')->where('id', '=', $id)->update($data);    
     # Setelah selesai simpan data, redirect ke halaman sebelum.
     return redirect()->back();
   }
 
   public function destroy($id)
   {
-    
+
     DB::table('users')->where('id', '=', $id)->delete();
     return redirect()->route('users.index');
 
