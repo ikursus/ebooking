@@ -19,6 +19,7 @@
 <div class="form-group">
   <label>NAMA</label>
   <input type="text" name="nama" class="form-control">
+  {!! $errors->first('nama', '<span class="text-danger">:message</span>') !!}
 </div>
 
 <div class="form-group">

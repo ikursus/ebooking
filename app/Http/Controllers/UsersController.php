@@ -33,9 +33,22 @@ class UsersController extends Controller
     return view('users/template_add');
   }
 
-  public function store()
+  public function store(Request $request)
   {
-    return 'Rekod telah berjaya disimpan!';
+    // $this->validate($request, [
+    //     'nama' => 'required|min:3',
+    //     'email' => 'required|email'
+    // ]);
+
+    $request->validate([
+        'nama' => 'required|min:3|string',
+        'email' => 'required|email',
+        'telefon' => 'required'
+    ]);
+
+    $data = $request->all();
+
+    return $data;
   }
 
   public function edit($id)
@@ -43,9 +56,11 @@ class UsersController extends Controller
     return view('users/template_edit');
   }
 
-  public function update($id)
+  public function update(Request $request, $id)
   {
-    return 'Rekod telah berjaya dikemaskini';
+    $data = $request->all();
+
+    return $data;
   }
 
   public function destroy($id)

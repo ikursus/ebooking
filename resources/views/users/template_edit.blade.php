@@ -13,7 +13,8 @@
                   @include('layouts.alerts')
 
 <form method="post" action="{{ route('users.update', 1) }}">
-
+@csrf
+@method('patch')
 <div class="form-group">
   <label>NAMA</label>
   <input type="text" name="nama" class="form-control">

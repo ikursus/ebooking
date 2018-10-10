@@ -13,6 +13,9 @@
                   @include('layouts.alerts')
 
                   <form method="post" action="{{ route('lab.update', 1) }}">
+                    @csrf
+                    <input type="hidden" name="_method" value="patch">
+                    @method('patch')
 
                   <div class="form-group">
                     <label>NAMA</label>

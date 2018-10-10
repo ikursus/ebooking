@@ -41,7 +41,7 @@ class LabController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('nama');
+        $data = $request->input('_token');
 
         return $data;
     }
@@ -77,7 +77,9 @@ class LabController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'Rekod berjaya dikemaskini';
+      $data = $request->all();
+
+      return $data;
     }
 
     /**
