@@ -12,7 +12,7 @@
 
                   @include('layouts.alerts')
 
-<form method="post" action="{{ route('users.update', 1) }}">
+<form method="post" action="{{ route('users.update', $user->id) }}">
 @csrf
 @method('patch')
 

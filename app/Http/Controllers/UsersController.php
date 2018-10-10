@@ -80,13 +80,23 @@ class UsersController extends Controller
   {
     $request->validate([
         'nama' => 'required|min:3|string',
-        'email' => 'required|email',
-        'telefon' => 'required'
+        'email' => 'required|email|unique:users,email,' . $id,
+        'phone' => 'required'
     ]);
 
-    $data = $request->all();
+    # Dapatkan ruangan data dari borang
+    $data = $request->only('nama', 'email', 'phone', 'role');
 
-    return $data;
+    # Dapatkan data password JIKA tidak kosong dan encrypt
+    if ( !empty( $request->input('password') ) )
+    {
+      $data['password'] = bcrypt( $request->input('password') );
+    }
+
+    # Simpan data ke dalam table users
+    DB::table('users')->where('id', '=', $id)->update($data);
+    # Setelah selesai simpan data, redirect ke halaman sebelum.
+    return redirect()->back();
   }
 
   public function destroy($id)
