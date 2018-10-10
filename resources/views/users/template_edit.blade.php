@@ -15,27 +15,34 @@
 <form method="post" action="{{ route('users.update', 1) }}">
 @csrf
 @method('patch')
+
 <div class="form-group">
   <label>NAMA</label>
-  <input type="text" name="nama" class="form-control">
+  <input type="text" name="nama" class="form-control" value="{{ $user->nama }}">
+  {!! $errors->first('nama', '<span class="text-danger">:message</span>') !!}
 </div>
 
 <div class="form-group">
   <label>EMAIL</label>
-  <input type="email" name="email" class="form-control">
+  <input type="email" name="email" class="form-control" value="{{ $user->email }}">
+</div>
+
+<div class="form-group">
+  <label>PASSWORD</label>
+  <input type="password" name="password" class="form-control">
 </div>
 
 <div class="form-group">
   <label>TELEFON</label>
-  <input type="text" name="phone" class="form-control">
+  <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
 </div>
 
 <div class="form-group">
   <label>ROLE</label>
   <select name="role" class="form-control">
-    <option value="student">STAFF</option>
-    <option value="staff">STAFF</option>
-    <option value="admin">STAFF</option>
+    <option value="student"{{ $user->role == 'student' ? 'selected=selected' : '' }}>STUDENT</option>
+    <option value="staff"{{ $user->role == 'staff' ? 'selected=selected' : '' }}>STAFF</option>
+    <option value="admin"{{ $user->role == 'admin' ? 'selected=selected' : '' }}>ADMIN</option>
   </select>
 </div>
 

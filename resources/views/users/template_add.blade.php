@@ -34,6 +34,11 @@
 </div>
 
 <div class="form-group">
+  <label>PASSWORD</label>
+  <input type="password" name="password" class="form-control">
+</div>
+
+<div class="form-group">
   <label>TELEFON</label>
   <input type="text" name="phone" class="form-control">
 </div>
@@ -41,9 +46,9 @@
 <div class="form-group">
   <label>ROLE</label>
   <select name="role" class="form-control">
-    <option value="student">STAFF</option>
+    <option value="student">STUDENT</option>
     <option value="staff">STAFF</option>
-    <option value="admin">STAFF</option>
+    <option value="admin">ADMIN</option>
   </select>
 </div>
 

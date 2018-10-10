@@ -24,7 +24,12 @@ class UsersController extends Controller
     //
     // ];
     # Hubungi table users, dan dapatkan semua data
-    $senarai_users = DB::table('users')->get();
+    $senarai_users = DB::table('users')
+    ->orderBy('id', 'desc')
+    # ->where('id', '=', 2)
+    # ->select('id', 'nama', 'email', 'phone')
+    # ->get();
+    ->paginate(2);
 
     # return view('users/template_index', ['page_title' => $page_title]);
     # return view('users/template_index')->with('page_title', $page_title);
@@ -46,18 +51,29 @@ class UsersController extends Controller
 
     $request->validate([
         'nama' => 'required|min:3|string',
-        'email' => 'required|email',
-        'telefon' => 'required'
+        'password' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'phone' => 'required'
     ]);
 
-    $data = $request->all();
-
-    return $data;
+    # Dapatkan ruangan data dari borang
+    $data = $request->only('email', 'phone', 'role');
+    # Besarkan semua huruf nama
+    $data['nama'] = strtoupper( $request->input('nama') );
+    # Dapatkan data password dan encrypt
+    $data['password'] = bcrypt( $request->input('password') );
+    # Simpan data ke dalam table users
+    DB::table('users')->insert($data);
+    # Setelah selesai simpan data, redirect ke senarai users.
+    return redirect()->route('users.index');
   }
 
   public function edit($id)
   {
-    return view('users/template_edit');
+    # Panggil data user dari table users berdasarkan ID yang dipilih
+    $user = DB::table('users')->where('id', '=', $id)->first();
+    # Paparkan template edit user beserta datanya
+    return view('users/template_edit', compact('user') );
   }
 
   public function update(Request $request, $id)

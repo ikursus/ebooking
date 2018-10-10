@@ -47,6 +47,9 @@
 
 </table>
 
+{{ $senarai_users->links() }}
+{{ $senarai_users->render() }}
+
 </div>
 </div>
 </div>
