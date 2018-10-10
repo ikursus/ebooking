@@ -41,7 +41,12 @@ class LabController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->input('_token');
+        $request->validate([
+          'nama' => 'required',
+          'status' => 'in:available,not_available'
+        ]);
+
+        $data = $request->all();
 
         return $data;
     }
@@ -77,6 +82,11 @@ class LabController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $request->validate([
+        'nama' => 'required',
+        'status' => 'in:available,not_available'
+      ]);
+      
       $data = $request->all();
 
       return $data;

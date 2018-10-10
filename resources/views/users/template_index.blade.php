@@ -32,12 +32,12 @@
     @foreach( $senarai_users as $user )
 
     <tr>
-      <td>{{ $user['id'] }} </td>
-      <td>{{ $user['nama'] }}</td>
-      <td>{{ $user['email'] }}</td>
-      <td>{{ $user['phone'] }}</td>
+      <td>{{ $user->id }} </td>
+      <td>{{ $user->nama }}</td>
+      <td>{{ $user->email }}</td>
+      <td>{{ $user->phone }}</td>
       <td>
-        <a href="{{ route('users.update', $user['id']) }}" class="btn btn-sm btn-primary">EDIT</a>
+        <a href="{{ route('users.update', $user->id) }}" class="btn btn-sm btn-primary">EDIT</a>
       </td>
     </tr>
 

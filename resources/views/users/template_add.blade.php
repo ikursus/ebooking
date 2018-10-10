@@ -16,6 +16,12 @@
 
 @csrf
 
+{{-- Comment dalam Blade --}}
+<?php
+// Comment dalam PHP
+?>
+<!-- Comment dalam HTML sahaja -->
+
 <div class="form-group">
   <label>NAMA</label>
   <input type="text" name="nama" class="form-control">
