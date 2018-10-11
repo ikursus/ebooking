@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tempahan;
+
+use App\User;
+use App\Lab;
 
 class TempahanController extends Controller
 {
@@ -13,7 +17,11 @@ class TempahanController extends Controller
      */
     public function index()
     {
-        //
+      $senarai_tempahan = Tempahan::paginate(5);
+
+      return view('tempahan/template_index', compact('senarai_tempahan'));
+
+
     }
 
     /**
@@ -23,7 +31,12 @@ class TempahanController extends Controller
      */
     public function create()
     {
-        //
+        # Dapatkan senarai user untuk dropdown
+        $senarai_users = User::select('nama', 'id')->get();
+        # Dapatkan senarai lab untuk dropdown
+        $senarai_labs = Lab::select('nama', 'id')->get();
+
+        return view('tempahan/template_add', compact('senarai_users', 'senarai_labs'));
     }
 
     /**
@@ -34,7 +47,17 @@ class TempahanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          'user_id' => 'required|integer',
+          'lab_id' => 'required|integer',
+          'tarikh_mula' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        Tempahan::create($data);
+
+        return redirect()->route('tempahan.index')->with('ayat-success', 'Rekod berjaya ditambah!');
     }
 
     /**
@@ -56,7 +79,14 @@ class TempahanController extends Controller
      */
     public function edit($id)
     {
-        //
+      # Dapatkan senarai user untuk dropdown
+      $senarai_users = User::select('nama', 'id')->get();
+      # Dapatkan senarai lab untuk dropdown
+      $senarai_labs = Lab::select('nama', 'id')->get();
+
+      $tempahan = Tempahan::find($id);
+
+        return view('tempahan/template_edit', compact('senarai_users', 'senarai_labs', 'tempahan'));
     }
 
     /**
@@ -68,7 +98,18 @@ class TempahanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $request->validate([
+        'user_id' => 'required|integer',
+        'lab_id' => 'required|integer',
+        'tarikh_mula' => 'required'
+      ]);
+
+      $data = $request->all();
+
+      $tempahan = Tempahan::find($id);
+      $tempahan->update($data);
+
+      return redirect()->route('tempahan.index')->with('ayat-success', 'Rekod berjaya dikemaskini!');
     }
 
     /**
@@ -79,6 +120,9 @@ class TempahanController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $tempahan = Tempahan::find($id);
+      $tempahan->delete();
+
+      return redirect()->route('tempahan.index')->with('ayat-success', 'Rekod berjaya dihapuskan!');
     }
 }

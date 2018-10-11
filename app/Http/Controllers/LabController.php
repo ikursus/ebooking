@@ -95,10 +95,15 @@ class LabController extends Controller
         'nama' => 'required',
         'status' => 'in:available,not_available'
       ]);
-
+      # Dapatkan SEMUA data
       $data = $request->all();
+      # Simpan data ke dalam database berdasarkan ID yang dikemaskini
+      $lab = Lab::find($id);
+      $lab->update($data);
 
-      return $data;
+      # $lab2 = Lab::where('id', '=', $id)->update($data);
+
+      return redirect()->route('lab.index')->with('ayat-success', 'Rekod berjaya dikemaskini!');
     }
 
     /**
@@ -109,6 +114,12 @@ class LabController extends Controller
      */
     public function destroy($id)
     {
-        return 'Rekod berjaya dihapuskan';
+      # Dapatkan rekod lab yang ingin dihapuskan merujuk ID lab.
+      $lab = Lab::find($id);
+      $lab->delete();
+
+      return redirect()
+      ->route('lab.index')
+      ->with('ayat-success', 'Rekod telah dihapuskan!');
     }
 }

@@ -32,7 +32,7 @@ Route::patch('lab/{id}/edit', 'LabController@update')->name('lab.update');
 Route::delete('lab/{id}', 'LabController@destroy')->name('lab.destroy');
 
 
-#Route::resource('lab', 'LabController');
+Route::resource('tempahan', 'TempahanController');
 
 
 

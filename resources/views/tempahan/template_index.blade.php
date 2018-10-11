@@ -13,7 +13,7 @@
                   @include('layouts.alerts')
 
 <p>
-<a href="{{ route('lab.create') }}" class="btn btn-primary">Tambah Lab</a>
+<a href="{{ route('tempahan.create') }}" class="btn btn-primary">Tambah Lab</a>
 </p>
 
 <!-- Paparkan data users dalam table -->
@@ -22,7 +22,10 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>NAMA</th>
+      <th>NAMA PENGGUNA</th>
+      <th>NAMA LAB</th>
+      <th>TARIKH</th>
+      <th>MASA</th>
       <th>STATUS</th>
       <th>TINDAKAN</th>
     </tr>
@@ -30,15 +33,26 @@
 
   <tbody>
 
-    @foreach( $senarai_lab as $item )
+    @foreach( $senarai_tempahan as $item )
 
     <tr>
       <td>{{ $item['id'] }} </td>
-      <td>{{ $item['nama'] }}</td>
+      <td>{{ $item->user->nama }}</td>
+      <td>{{ $item->lab->nama }}</td>
+      <td>
+        {{ $item['tarikh_mula'] }}
+        sehingga
+        {{ $item['tarikh_akhir'] }}
+      </td>
+      <td>
+        {{ $item['masa_mula'] }}
+        sehingga
+        {{ $item['masa_akhir'] }}
+      </td>
       <td>{{ $item['status'] }}</td>
       <td>
 
-        <a href="{{ route('lab.edit', $item['id']) }}" class="btn btn-sm btn-primary">
+        <a href="{{ route('tempahan.edit', $item['id']) }}" class="btn btn-sm btn-primary">
           EDIT
         </a>
 
@@ -47,7 +61,7 @@
           DELETE
         </button>
 
-        <form method="post" action="{{ route('lab.destroy', $item->id) }}">
+        <form method="post" action="{{ route('tempahan.destroy', $item->id) }}">
           @csrf
           @method('delete')
 
@@ -64,7 +78,7 @@
               <div class="modal-body">
                 Adakah anda bersetuju untuk menghapuskan data berikut?
                 <br>
-                Nama: {{ $item->nama }}
+                ID: {{ $item->id }}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -83,7 +97,7 @@
 
 </table>
 
-{{ $senarai_lab->links() }}
+{{ $senarai_tempahan->links() }}
 </div>
 </div>
 </div>

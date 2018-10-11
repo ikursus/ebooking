@@ -49,6 +49,9 @@
                           <li class="nav-item">
                               <a class="nav-link" href="{{ route('lab.index') }}">Senarai Lab</a>
                           </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ route('tempahan.index') }}">Senarai Tempahan</a>
+                          </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
