@@ -1,6 +1,14 @@
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
+@if( session('ayat-success') )
+<div class="alert alert-success" role="alert">
+  {{ session('ayat-success') }}
 </div>
+@endif
+
+@if( session('ayat-bahaya') )
+<div class="alert alert-danger" role="alert">
+  {{ session('ayat-bahaya') }}
+</div>
+@endif
 
 @if ($errors->any())
     <div class="alert alert-danger">

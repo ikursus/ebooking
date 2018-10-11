@@ -65,7 +65,7 @@ class UsersController extends Controller
     # Simpan data ke dalam table users
     DB::table('users')->insert($data);
     # Setelah selesai simpan data, redirect ke senarai users.
-    return redirect()->route('users.index');
+    return redirect()->route('users.index')->with('ayat-success', 'Rekod telah berjaya ditambah!');
   }
 
   public function edit($id)
@@ -94,16 +94,17 @@ class UsersController extends Controller
     }
 
     # Simpan data ke dalam table users
-    DB::table('users')->where('id', '=', $id)->update($data);    
+    DB::table('users')->where('id', '=', $id)->update($data);
     # Setelah selesai simpan data, redirect ke halaman sebelum.
-    return redirect()->back();
+    return redirect()->back()->with('ayat-success', 'Rekod telah berjaya dikemaskini!');
   }
 
   public function destroy($id)
   {
-
+    # Dapatkan rekod user yang ingin dihapuskan merujuk ID user.
     DB::table('users')->where('id', '=', $id)->delete();
-    return redirect()->route('users.index');
+
+    return redirect()->route('users.index')->with('ayat-success', 'Rekod telah dihapuskan!');
 
   }
 }
