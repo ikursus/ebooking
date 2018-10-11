@@ -47,6 +47,7 @@
 
 </table>
 
+{{ $senarai_lab->links() }}
 </div>
 </div>
 </div>

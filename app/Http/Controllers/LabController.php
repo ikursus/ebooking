@@ -75,7 +75,11 @@ class LabController extends Controller
      */
     public function edit($id)
     {
-        return view('labs/template_edit');
+        # Dapatkan data user berdasrakan idea
+        # $lab = Lab::where('id', '=', $id)->first();
+        $lab = Lab::find($id);
+
+        return view('labs/template_edit', compact('lab'));
     }
 
     /**

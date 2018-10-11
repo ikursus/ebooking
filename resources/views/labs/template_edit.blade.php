@@ -19,14 +19,19 @@
 
                   <div class="form-group">
                     <label>NAMA</label>
-                    <input type="text" name="nama" class="form-control">
+                    <input type="text" name="nama" class="form-control" value="{{ $lab->nama }}">
+                  </div>
+
+                  <div class="form-group">
+                    <label>KAPASITI</label>
+                    <input type="text" name="nama" class="form-control" value="{{ $lab->kapasiti }}">
                   </div>
 
                   <div class="form-group">
                     <label>STATUS</label>
-                    <select name="role" class="form-control">
-                      <option value="available">AVAILABLE</option>
-                      <option value="not_available">NOT AVAILABLE</option>
+                    <select name="status" class="form-control">
+                      <option value="available"{{ $lab->status == 'available' ? 'selected=selected' : '' }}>AVAILABLE</option>
+                      <option value="not_available"{{ $lab->status == 'not_available' ? 'selected=selected' : '' }}>NOT AVAILABLE</option>
                     </select>
                   </div>
 
