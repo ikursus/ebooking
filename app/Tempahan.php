@@ -24,7 +24,6 @@ class Tempahan extends Model
       return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-
     public function lab()
     {
       return $this->belongsTo(Lab::class, 'lab_id', 'id');
