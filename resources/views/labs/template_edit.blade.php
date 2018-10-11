@@ -24,7 +24,7 @@
 
                   <div class="form-group">
                     <label>KAPASITI</label>
-                    <input type="text" name="nama" class="form-control" value="{{ $lab->kapasiti }}">
+                    <input type="text" name="kapasiti" class="form-control" value="{{ $lab->kapasiti }}">
                   </div>
 
                   <div class="form-group">
