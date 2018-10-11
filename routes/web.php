@@ -4,8 +4,6 @@ Route::get('/', 'PagesController@homepage')->name('homepage');
 Route::get('hubungi', 'PagesController@hubungi')->name('c');
 
 Route::group(['middleware' => 'auth'], function() {
-
-
   # Route untuk paparkan senarai users
   Route::get('users', 'UsersController@index')->name('users.index');
   # Route untuk papar borang tambah lab
@@ -35,7 +33,6 @@ Route::group(['middleware' => 'auth'], function() {
   Route::delete('lab/{id}', 'LabController@destroy')->name('lab.destroy');
 
   Route::resource('tempahan', 'TempahanController');
-
 });
 
 
