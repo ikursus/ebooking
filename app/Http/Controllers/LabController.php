@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Lab;
+
 class LabController extends Controller
 {
     /**
@@ -13,12 +15,13 @@ class LabController extends Controller
      */
     public function index()
     {
-        $senarai_lab = [
-          ['id' => 1, 'nama' => 'Makmal Komputer 1', 'status' => 'available'],
-          ['id' => 2, 'nama' => 'Makmal Komputer 2', 'status' => 'not_available'],
-          ['id' => 3, 'nama' => 'Makmal Komputer 3', 'status' => 'available']
-
-        ];
+        // $senarai_lab = [
+        //   ['id' => 1, 'nama' => 'Makmal Komputer 1', 'status' => 'available'],
+        //   ['id' => 2, 'nama' => 'Makmal Komputer 2', 'status' => 'not_available'],
+        //   ['id' => 3, 'nama' => 'Makmal Komputer 3', 'status' => 'available']
+        //
+        // ];
+        $senarai_lab = Lab::paginate(5);
 
         return view('labs/template_index', compact('senarai_lab'));
     }
@@ -45,10 +48,12 @@ class LabController extends Controller
           'nama' => 'required',
           'status' => 'in:available,not_available'
         ]);
-
+        # Dapatkan SEMUA daripada borang
         $data = $request->all();
-
-        return $data;
+        # Simpan data ke Table labs
+        Lab::create($data);
+        # redirect ke halaman senarai labs
+        return redirect()->route('lab.index')->with('ayat-success', 'Rekod telah berjaya ditambah!');
     }
 
     /**
@@ -86,7 +91,7 @@ class LabController extends Controller
         'nama' => 'required',
         'status' => 'in:available,not_available'
       ]);
-      
+
       $data = $request->all();
 
       return $data;

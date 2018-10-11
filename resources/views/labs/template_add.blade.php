@@ -23,8 +23,13 @@
 </div>
 
 <div class="form-group">
+  <label>KAPASITI</label>
+  <input type="text" name="kapasiti" class="form-control">
+</div>
+
+<div class="form-group">
   <label>STATUS</label>
-  <select name="role" class="form-control">
+  <select name="status" class="form-control">
     <option value="available">AVAILABLE</option>
     <option value="not_available">NOT AVAILABLE</option>
   </select>
